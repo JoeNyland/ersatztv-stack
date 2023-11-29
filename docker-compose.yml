@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  ersatztv:
+    image: jasongdove/ersatztv:develop-vaapi
+    container_name: ersatztv
+    restart: unless-stopped
+    ports:
+      - 8409:8409
+    environment:
+      TZ: Europe/London
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - data:/root/.local/share/ersatztv
+      - /tank:/tank:ro
+    devices:
+      - /dev/dri:/dev/dri
+
+volumes:
+  data:
